@@ -72,7 +72,7 @@ export interface GMSPlace {
   /**
    * The timezone UTC offset of the place in minutes.
    */
-  uTCOffsetMinutes?: number;
+  utcOffsetMinutes?: number;
   /**
    * The |GMSPlaceBusinessStatus| of the place.
    */
@@ -87,14 +87,16 @@ export interface Coordinate {
 export interface GMSCoordinateBounds {
   northEast: Coordinate;
   southWest: Coordinate;
-  valid: boolean;
+  /* iOS only */
+  valid?: boolean;
 }
 
 export interface GMSAddressComponent {
   name: string;
   shortName: string;
   types: PlaceTypes[];
-  type: PlaceTypes;
+  /* iOS only */
+  type?: PlaceTypes;
 }
 
 export interface GMSPlusCode {

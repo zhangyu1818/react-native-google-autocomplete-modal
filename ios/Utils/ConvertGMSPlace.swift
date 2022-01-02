@@ -23,7 +23,7 @@ func convertGMSPlace(_ place: GMSPlace) -> [String: Any] {
     dic["website"] = place.website?.absoluteString
     dic["addressComponents"] = place.addressComponents
     dic["userRatingsTotal"] = place.userRatingsTotal
-    dic["uTCOffsetMinutes"] = place.utcOffsetMinutes
+    dic["utcOffsetMinutes"] = place.utcOffsetMinutes
     dic["businessStatus"] = place.businessStatus.rawValue
 
     if let viewport = place.viewport {
