@@ -11,11 +11,17 @@ npm install react-native-google-autocomplete-modal
 ## Usage
 
 ```js
-import { multiply } from "react-native-google-autocomplete-modal";
+import { openAutocompleteModal } from "react-native-google-autocomplete-modal";
 
 // ...
 
-const result = await multiply(3, 7);
+openAutocompleteModal()
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 ```
 
 ## Contributing
