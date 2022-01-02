@@ -1,5 +1,9 @@
 import { NativeModules, Platform } from 'react-native';
 
+import type { GMSPlace } from './interface';
+
+export * from './interface';
+
 const LINKING_ERROR =
   `The package 'react-native-google-autocomplete-modal' doesn't seem to be linked. Make sure: \n\n` +
   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
@@ -17,6 +21,6 @@ const GoogleAutocompleteModal = NativeModules.GoogleAutocompleteModal
       }
     );
 
-export function openAutocompleteModal(): Promise<any> {
-  return GoogleAutocompleteModal.openAutocompleteModal()
+export function openAutocompleteModal(): Promise<GMSPlace> {
+  return GoogleAutocompleteModal.openAutocompleteModal();
 }

@@ -32,28 +32,26 @@ class GoogleAutocompleteModal: NSObject {
 }
 
 extension GoogleAutocompleteModal: GMSAutocompleteViewControllerDelegate {
-    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        print("Place name: \(place.name)")
-        print("Place ID: \(place.placeID)")
-        print("Place attributions: \(place.attributions)")
-
+    func viewController(_: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        let currentPlace = convertGMSPlace(place)
+        resolver?(currentPlace)
         topViewController?.dismiss(animated: true)
     }
 
-    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+    func viewController(_: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
         // TODO: handle the error.
         print("Error: ", error.localizedDescription)
     }
 
-    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+    func wasCancelled(_: GMSAutocompleteViewController) {
         topViewController?.dismiss(animated: true)
     }
 
-    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+    func didRequestAutocompletePredictions(_: GMSAutocompleteViewController) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
     }
 
-    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+    func didUpdateAutocompletePredictions(_: GMSAutocompleteViewController) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
 }

@@ -6,7 +6,11 @@ import { openAutocompleteModal } from 'react-native-google-autocomplete-modal';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text onPress={openAutocompleteModal}>Open Autocomplete Modal</Text>
+      <Text onPress={()=>{
+        openAutocompleteModal().then(res=>{
+          console.log(JSON.stringify(res,null,2))
+        })
+      }}>Open Autocomplete Modal</Text>
     </View>
   );
 }
