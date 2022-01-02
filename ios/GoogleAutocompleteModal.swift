@@ -16,18 +16,34 @@ class GoogleAutocompleteModal: NSObject {
     var resolver: RCTPromiseResolveBlock?
     var reject: RCTPromiseRejectBlock?
 
-    @objc func openAutocompleteModal(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+    @objc func openAutocompleteModal(_ options: [String: Any], resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
         DispatchQueue.main.async { [weak self] in
             self?.topViewController = UIApplication.shared.topViewController
 
             self?.resolver = resolve
             self?.reject = reject
 
-            let autocomplateViewControll = GMSAutocompleteViewController()
-            autocomplateViewControll.delegate = self
+            let autocompleteViewControll = GMSAutocompleteViewController()
+            autocompleteViewControll.delegate = self
 
-            self?.topViewController?.present(autocomplateViewControll, animated: true)
+            let autocompleteFilter = self?.getAutocompleteFilter(options)
+
+            self?.topViewController?.present(autocompleteViewControll, animated: true)
         }
+    }
+
+    private func getAutocompleteFilter(_ options: [String: Any]) -> GMSAutocompleteFilter {
+        let autocompleteFilter = GMSAutocompleteFilter()
+
+        if let country = options["country"] {
+            autocompleteFilter.country = country as? String
+        }
+
+        if let countries = options["countries"] {
+            autocompleteFilter.countries = countries as? [String]
+        }
+
+        return autocompleteFilter
     }
 }
 

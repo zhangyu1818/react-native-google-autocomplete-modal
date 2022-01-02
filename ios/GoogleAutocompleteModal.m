@@ -12,6 +12,6 @@
 
 @interface RCT_EXTERN_MODULE(GoogleAutocompleteModal, NSObject)
 
-RCT_EXTERN_METHOD(openAutocompleteModal: (RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject);
+RCT_EXTERN_METHOD(openAutocompleteModal: (NSDictionary *) options resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject);
 
 @end

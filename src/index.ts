@@ -21,6 +21,23 @@ const GoogleAutocompleteModal = NativeModules.GoogleAutocompleteModal
       }
     );
 
-export function openAutocompleteModal(): Promise<GMSPlace> {
-  return GoogleAutocompleteModal.openAutocompleteModal();
+interface OpenAutocompleteModalOptions {
+  /**
+   * The country to restrict results to.
+   *
+   * This should be a ISO 3166-1 Alpha-2 country code (case insensitive). If nil, no country filtering will take place.
+   */
+  county?: string;
+  /**
+   * The countries to restrict results to.
+   *
+   * This should be a ISO 3166-1 Alpha-2 country code (case insensitive). Supports up to 5 countries to filter. If nil, no country filtering will take place.
+   */
+  countries?: string[];
+}
+
+export function openAutocompleteModal(
+  options: OpenAutocompleteModalOptions = {}
+): Promise<GMSPlace> {
+  return GoogleAutocompleteModal.openAutocompleteModal(options);
 }
